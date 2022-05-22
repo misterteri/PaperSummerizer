@@ -5,14 +5,16 @@ interface Props {
     authors: [];
     published: string;
     abstract: string;
+    link: string;
 }
 
-const Paper: FC<Props> = ({ title, authors, published, abstract }) => {
+const Paper: FC<Props> = ({ title, authors, published, abstract, link }) => {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     // var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
     var publishDate = new Date(published)
     return (
-        <div style={{marginBottom: `3rem`, padding: `1rem`}}>
+        <div style={{marginBottom: `0.5rem`, padding: `1rem`}}>
             <h1 style={{ fontSize: `2rem`, fontWeight: `bold` }}>{title}</h1>
             <div
                 style={{
@@ -42,6 +44,9 @@ const Paper: FC<Props> = ({ title, authors, published, abstract }) => {
                 </span>
             </div>
             <p>{abstract}</p>
+            <div style={{ fontSize: `0.9rem`, color: `blue`, textDecoration: `underline` }}>
+                <a href={link} target="_blank">Source</a>
+            </div>
         </div>
     )
 }
