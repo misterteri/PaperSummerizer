@@ -13,6 +13,7 @@ const Home: NextPage = ({ data }: any) => {
               authors={item.authors}
               published={item.published}
               abstract={item.abstract}
+              link={item.link}
             />
           </>
         ))
@@ -39,13 +40,14 @@ export async function getServerSideProps() {
       var authors = result.feed.entry[i].author
       var published = result.feed.entry[i].published[0]
       var abstract = result.feed.entry[i].summary[0].replace(/\s+/g, ' ')
-
+      var link = result.feed.entry[i].link[0].$.href
       data.push(
         {
           title: title,
           authors: authors,
           published: published,
           abstract: abstract,
+          link: link
         }
       )
     }
