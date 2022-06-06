@@ -1,13 +1,18 @@
 import type { NextPage } from 'next'
 import Paper from '../components/Paper'
+import Header from '../components/Header'
+import getConfig from 'next/config';
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+const dev = process.env.NODE_ENV !== 'production';
+const API_URI = dev ? publicRuntimeConfig.URI : serverRuntimeConfig.URI;
 
 const Home: NextPage = ({ data }: any) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 style={{ fontSize: `4rem`, fontWeight: `bold` }}>Machine Learning</h1>
+      <Header />
+      <h1 style={{ fontSize: `3rem`, fontWeight: `bold` }}>Machine Learning</h1>
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
         {data.map((item: any, index: any) => (
-          <>
             <Paper
               key={index}
               title={item.title}
@@ -16,7 +21,6 @@ const Home: NextPage = ({ data }: any) => {
               abstract={item.abstract}
               link={item.link}
             />
-          </>
         ))}
       </div>
     </div>
@@ -24,14 +28,14 @@ const Home: NextPage = ({ data }: any) => {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:5000/machinelearning')
+  const res = await fetch(`${API_URI}/machinelearning`)
   const xml2js = require('xml2js')
   var parser = new xml2js.Parser()
 
   // create an array that will contain data from the json file
   var data: any = []
 
-  parser.parseString(await res.text(), function (err: any, result: any) {
+  parser.parseString(await res.text(), function (err:any, result: any) {
     for (var i = 0; i < result.feed.entry.length; i++) {
       // remove all the new lines
       var title = result.feed.entry[i].title[0].replace(/\n/g, '')

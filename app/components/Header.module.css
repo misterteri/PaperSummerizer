@@ -1,0 +1,12 @@
+.ul {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.li {
+  margin-left: 1rem;
+}
+
+.li:hover {
+  text-decoration: underline;
+}

@@ -1,31 +1,21 @@
 import Link from 'next/link'
+import styles from './Header.module.css'
 
 export default function Header() {
+  var pages:{[key: string]: string} = {
+    'Machine Learning': '/',
+    'Deep Learning': '/deeplearning',
+    'Reinforcement Learning': '/reinforcementlearning',
+  }
   return (
-    <nav>
-      <ul>
-        <span>
-          <li>
-            <Link href="/machinelearning">
-              <a>Machine Learning</a>
-            </Link>
-          </li>
-        </span>
-        <span>
-          <li>
-            <Link href="/deeplearning">
-              <a>Deep Learning</a>
-            </Link>
-          </li>
-        </span>
-        <span>
-          <li>
-            <Link href="/reinforcementlearning">
-              <a>Reinforcement Learning</a>
-            </Link>
-          </li>
-        </span>
-      </ul>
-    </nav>
+    <ul className={styles.ul}>
+      {Object.keys(pages).map((page: any, index: any) => (
+        <li className={styles.li} key={index}>
+          <Link href={pages[page]}>
+            <a className={styles.a}>{page}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
   )
 }

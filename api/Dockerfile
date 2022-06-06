@@ -8,4 +8,6 @@ WORKDIR /app
 
 COPY app.py .
 
-CMD flask run
+expose 5000
+
+CMD python app.py

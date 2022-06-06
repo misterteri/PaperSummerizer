@@ -29,7 +29,7 @@ const Paper: FC<Props> = ({ title, authors, published, abstract, link }) => {
   return (
     <div
       style={{
-        marginBottom: `0.5rem`,
+        marginBottom: `2rem`,
         padding: `1rem`,
         border: `1px solid #ccc`,
         borderRadius: `0.5rem`,
