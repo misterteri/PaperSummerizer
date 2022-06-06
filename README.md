@@ -1,27 +1,16 @@
 # Paper Summerizer
 
-Recommended setup:
-1. Create a conda environment
-   ```
-   conda create -n flask python=3.8
-   conda activate flask
-   conda install -c anaconda flask
-   conda install pythondotenv
-   ```
-2. Install `node-modules` in `/app/` folder
-   ```
-   cd app
-   npm install
-   ```
+This project contains a collection of papers that fetch from the [arxiv](https://arxiv.org) API, made using Next.js and Flask.
 
-How to run this project:
-1. Run the api
+1. To build the images for the api and the website, run
    ```
-   cd api
-   flask run
+   make build
    ```
-2. Run the web app
+2. To run the api and the website, run
    ```
-   cd app
-   npm run dev
+   make run
+   ```
+3. To terminate the api and the website, run
+   ```
+   make down
    ```
