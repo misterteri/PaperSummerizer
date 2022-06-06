@@ -3,9 +3,12 @@ import Paper from '../components/Paper'
 
 const Home: NextPage = ({ data }: any) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      {
-        data.map((item: any, index: any) => (
+    <div className="flex flex-col items-center justify-center">
+      <h1 style={{ fontSize: `4rem`, fontWeight: `bold` }}>
+        Reinforcement Learning
+      </h1>
+      <div className="flex min-h-screen flex-col items-center justify-center py-2">
+        {data.map((item: any, index: any) => (
           <>
             <Paper
               key={index}
@@ -16,24 +19,24 @@ const Home: NextPage = ({ data }: any) => {
               link={item.link}
             />
           </>
-        ))
-      }
+        ))}
+      </div>
     </div>
   )
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:5000/machinelearning')
+  const res = await fetch('http://localhost:5000/reinforcementlearning')
   const xml2js = require('xml2js')
   var parser = new xml2js.Parser()
 
   // create an array that will contain data from the json file
-  var data:any = []
+  var data: any = []
 
   parser.parseString(await res.text(), function (err: any, result: any) {
     for (var i = 0; i < result.feed.entry.length; i++) {
       // remove all the new lines
-      var title = result.feed.entry[i].title[0].replace(/\n/g, "")
+      var title = result.feed.entry[i].title[0].replace(/\n/g, '')
 
       // remove unnecessary whitespaces
       var title = title.replace(/\s\s+/g, ' ')
@@ -41,20 +44,18 @@ export async function getServerSideProps() {
       var published = result.feed.entry[i].published[0]
       var abstract = result.feed.entry[i].summary[0].replace(/\s+/g, ' ')
       var link = result.feed.entry[i].link[0].$.href
-      data.push(
-        {
-          title: title,
-          authors: authors,
-          published: published,
-          abstract: abstract,
-          link: link
-        }
-      )
+      data.push({
+        title: title,
+        authors: authors,
+        published: published,
+        abstract: abstract,
+        link: link,
+      })
     }
   })
 
   return {
-    props: {data},
+    props: { data },
   }
 }
 
