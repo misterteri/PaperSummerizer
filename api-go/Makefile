@@ -6,6 +6,6 @@ setup:
 	@pip install --user scikit-learn==0.23.2 -y
 	@conda install -c anaconda beautifulsoup4 -y
 
-get:
+pull:
 	@git clone https://github.com/titipata/scipdf_parser
 	@mv scipdf_parser grobid
