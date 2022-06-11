@@ -5,7 +5,7 @@
 In order to run this project, you need to setup the environment needed:
 ```
 make setup
-``
+```
 
 `make setup` will
 1. create a conda environment called `nlp` with python 3.8
