@@ -1,21 +1,21 @@
 package main
 
 import (
+	"api-go/handlers"
 	"context"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
-	"parver/handlers"
 	"syscall"
 	"time"
 )
 
 func main() {
-	logger := log.New(os.Stdout, "parser ", log.LstdFlags)
+	logger := log.New(os.Stdout, "api ", log.LstdFlags)
 
 	serveMux := http.NewServeMux()
-	serveMux.Handle("/api/v1/create", handlers.NewCreateHandler(logger))
+	serveMux.Handle("/api/v1/post", handlers.NewPostHandler(logger))
 	serveMux.Handle("/api/v1/delete", handlers.NewDeleteHandler(logger))
 	serveMux.Handle("/api/v1/modify", handlers.NewModifyHandler(logger))
 	serveMux.Handle("/api/v1/get", handlers.NewGetHandler(logger))
