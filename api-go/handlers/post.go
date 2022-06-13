@@ -69,9 +69,8 @@ func (post *Post) parsePDFToJSON(fileName string) Paper {
 	}
 
 	output := copyOutput(stdout)
-
 	if output == "" {
-		post.Logger.Fatalf("Could not get the filename")
+		post.Logger.Fatalf("Could not get the output")
 	}
 
 	// decode the output string to paper
